@@ -1,15 +1,11 @@
-# Frontend
-# 1. Clone the repository
+# 📥 1. Clone the repository
 git clone https://github.com/yourusername/bcac.git
 
-# 2. Navigate into the project folder
+# 📂 2. Navigate to the project folder
 cd bcac
 
-# 3. Install dependencies
+# 📦 3. Install all dependencies
 npm install
 
-# 4. Start the app
+# 🚀 4. Start the development server
 npm run dev
-
-📌 Requirements: Make sure Node.js and npm are installed on your machine.
-
