@@ -1,11 +1,37 @@
-# 📥 1. Clone the repository
-git clone https://github.com/yourusername/bcac.git
+Project Overview
 
-# 📂 2. Navigate to the project folder
-cd bcac
+Folder Structure
 
-# 📦 3. Install all dependencies
+📂 src
+┣ 📂 assets  
+ ┣ 📂 components  
+ ┃ ┣ 📂 atoms  
+ ┃ ┣ 📂 molecules  
+ ┃ ┣ 📂 organisms  
+ ┃ ┣ 📂 templates  
+ ┃ ┗ 📂 pages  
+ ┣ 📂 hooks  
+ ┣ 📂 contexts  
+ ┣ 📂 services  
+ ┣ 📂 utils  
+ ┣ 📂 routes  
+ ┣ 📂 styles  
+ ┣ 📜 App.tsx  
+ ┣ 📜 main.tsx  
+ ┣ 📜 vite.config.ts  
+ ┗ 📜 tsconfig.json
+
+Start up Steps
+
+1. Clone the repository:
+
+git clone <repo-url>
+cd <project-directory>
+
+2. Install dependencies:
+
 npm install
 
-# 🚀 4. Start the development server
+3. Start the development server:
+
 npm run dev
