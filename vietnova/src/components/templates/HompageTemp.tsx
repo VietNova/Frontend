@@ -1,15 +1,16 @@
 import { FC, useState } from 'react';
-import { Input, Layout, Menu, Tabs } from 'antd';
-import { motion } from 'framer-motion'; // Thêm hiệu ứng chuyển đổi
+import { Input, Layout, Menu, Tabs, Select } from 'antd';
+import { motion } from 'framer-motion';
 
 import Banner from '../organisms/Banner';
 import HeaderHompage from '../organisms/HeaderHomepage';
 import MainFooter from '../organisms/MainFooter';
 
 const { Header, Content, Sider } = Layout;
+const { Search } = Input;
 
 const HompageTemplate: FC = () => {
-  const [activeTab, setActiveTab] = useState('team');
+  const [activeTab, setActiveTab] = useState('apartments');
 
   return (
     <Layout className='flex min-h-screen flex-col'>
@@ -36,54 +37,75 @@ const HompageTemplate: FC = () => {
         </div>
 
         <Layout>
-          {/* Sidebar bộ lọc */}
-          <Sider width={250} className='border-r border-gray-200 bg-white p-4'>
+          {/* Filter Sidebar */}
+          <Sider width={280} className='border-r border-gray-200 bg-white p-4'>
             <h2 className='mb-4 text-lg font-bold'>Filters</h2>
             <Menu mode='inline'>
-              <Menu.SubMenu key='category' title='Category'>
-                <Menu.Item key='1'>Team</Menu.Item>
-                <Menu.Item key='2'>Tournament</Menu.Item>
-                <Menu.Item key='3'>Players</Menu.Item>
+              <Menu.SubMenu key='building' title='Building'>
+                <Menu.Item key='1'>Tower A</Menu.Item>
+                <Menu.Item key='2'>Tower B</Menu.Item>
+                <Menu.Item key='3'>Tower C</Menu.Item>
+                <Menu.Item key='4'>Tower D</Menu.Item>
               </Menu.SubMenu>
-              <Menu.SubMenu key='typeSport' title='Type of sport'>
-                <Menu.Item key='4'>Football</Menu.Item>
-                <Menu.Item key='5'>Basketball</Menu.Item>
-                <Menu.Item key='6'>Pickle Ball</Menu.Item>
-                <Menu.Item key='7'>Badminton</Menu.Item>
-                <Menu.Item key='8'>Billiards</Menu.Item>
+              <Menu.SubMenu key='apartmentType' title='Apartment Type'>
+                <Menu.Item key='5'>Studio</Menu.Item>
+                <Menu.Item key='6'>1 Bedroom</Menu.Item>
+                <Menu.Item key='7'>2 Bedrooms</Menu.Item>
+                <Menu.Item key='8'>3 Bedrooms</Menu.Item>
+                <Menu.Item key='9'>Duplex</Menu.Item>
               </Menu.SubMenu>
-              <Menu.SubMenu key='level' title='Level'>
-                <Menu.Item key='9'>Beginner</Menu.Item>
-                <Menu.Item key='10'>Intermediate</Menu.Item>
-                <Menu.Item key='11'>Competent</Menu.Item>
-                <Menu.Item key='12'>Amateur</Menu.Item>
-                <Menu.Item key='13'>Semi-pro</Menu.Item>
-                <Menu.Item key='14'>Pro</Menu.Item>
+              <Menu.SubMenu key='status' title='Status'>
+                <Menu.Item key='10'>Available</Menu.Item>
+                <Menu.Item key='11'>Rented</Menu.Item>
+                <Menu.Item key='12'>Under Maintenance</Menu.Item>
               </Menu.SubMenu>
-              <Menu.SubMenu key='classification' title='Classification'>
-                <Menu.Item key='15'>Team</Menu.Item>
-                <Menu.Item key='16'>Individual</Menu.Item>
+              <Menu.SubMenu key='price' title='Price Range'>
+                <Menu.Item key='13'>Under $200</Menu.Item>
+                <Menu.Item key='14'>$200 - $400</Menu.Item>
+                <Menu.Item key='15'>$400 - $600</Menu.Item>
+                <Menu.Item key='16'>Above $600</Menu.Item>
+              </Menu.SubMenu>
+              <Menu.SubMenu key='area' title='Area'>
+                <Menu.Item key='17'>Under 50m²</Menu.Item>
+                <Menu.Item key='18'>50 - 70m²</Menu.Item>
+                <Menu.Item key='19'>70 - 100m²</Menu.Item>
+                <Menu.Item key='20'>Above 100m²</Menu.Item>
               </Menu.SubMenu>
             </Menu>
           </Sider>
 
           <Content className='p-6'>
             <Tabs
-              defaultActiveKey='team'
+              defaultActiveKey='apartments'
               onChange={setActiveTab}
               className='mb-4'
             >
-              <Tabs.TabPane tab='Team' key='team' />
-              <Tabs.TabPane tab='Tournament' key='tournament' />
-              <Tabs.TabPane tab='Players' key='players' />
+              <Tabs.TabPane tab='Apartments' key='apartments' />
+              <Tabs.TabPane tab='Services' key='services' />
+              <Tabs.TabPane tab='Maintenance' key='maintenance' />
+              <Tabs.TabPane tab='Residents' key='residents' />
             </Tabs>
 
-            {/* Thanh tìm kiếm và bộ lọc */}
-            <div className='mb-4 flex items-center justify-between'>
-              <Input placeholder='Enter the team name' className='w-10' />
+            {/* Search and Filter Bar */}
+            <div className='mb-6 flex items-center gap-4'>
+              <Search
+                placeholder='Search apartments...'
+                className='w-96'
+                allowClear
+              />
+              <Select
+                placeholder='Sort by'
+                className='w-40'
+                options={[
+                  { value: 'price_asc', label: 'Price: Low to High' },
+                  { value: 'price_desc', label: 'Price: High to Low' },
+                  { value: 'area_asc', label: 'Area: Small to Large' },
+                  { value: 'area_desc', label: 'Area: Large to Small' },
+                ]}
+              />
             </div>
 
-            {/* Khu vực hiển thị nội dung */}
+            {/* Content Display Area */}
             <motion.div
               key={activeTab}
               initial={{ opacity: 0 }}

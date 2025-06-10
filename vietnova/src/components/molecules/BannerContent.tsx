@@ -1,9 +1,11 @@
 const BannerContent = () => (
     <div className='mx-auto max-w-md text-center'>
       {/* Tiêu đề chính */}
-      <h1 className='text-5xl leading-tight font-extrabold text-black'>
-        Benefits of <br /> regular exercise
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug text-gray-900">
+        Apartment <br />
+        Management <span className="text-blue-600">Smart</span>
       </h1>
+
   
       {/* Dòng kẻ + tiêu đề phụ */}
       <div className='mt-4 flex items-center justify-center'>
@@ -13,7 +15,7 @@ const BannerContent = () => (
   
       {/* Nội dung mô tả */}
       <p className='mt-3 text-base text-gray-600'>
-        At our comunity, you can experience the best level of customer service.
+      Comprehensive solution for modern apartment complex management. Optimize operations, enhance resident experience.
       </p>
   
       {/* Nút bấm */}
