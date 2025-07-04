@@ -10,6 +10,7 @@ import ResidentLogin from './components/pages/ResidentLogin.tsx';
 import StaffLogin from './components/pages/StaffLogin.tsx';
 import AdminHomepage from './components/pages/AdminHomepage.tsx';
 import StaffHomepage from './components/pages/StaffHomepage.tsx';
+import ServicesHomepage from './components/pages/ServicesHomepage.tsx';
 
 const RouteChangeHandler = () => {
   const location = useLocation();
@@ -41,6 +42,7 @@ function App() {
           <Route path='/admin-login' element={<AdminLogin />} />
           <Route path='/staff-login' element={<StaffLogin />} />
           <Route path='/resident-login' element={<ResidentLogin />} />
+          <Route path='/services-homepage' element={<ServicesHomepage />} />
         </Routes>
       </LoadingProvider>
     </Router>

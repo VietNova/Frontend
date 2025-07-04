@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { Input, Layout, Menu, Select, Tabs } from 'antd';
 import { motion } from 'framer-motion';
+import ServicesHomepageTemp from './ServicesHomepageTemp';
 
 import Banner from '../organisms/Banner';
 import HeaderHomepage from '../organisms/HeaderHomepage';
@@ -11,6 +12,10 @@ const { Search } = Input;
 
 const HompageTemplate: FC = () => {
   const [activeTab, setActiveTab] = useState('apartments');
+
+  const handleTabChange = (key: string) => {
+    setActiveTab(key);
+  };
 
   return (
     <Layout className='flex min-h-screen flex-col'>
@@ -66,8 +71,9 @@ const HompageTemplate: FC = () => {
           <Content className='p-6'>
             <Tabs
               defaultActiveKey='apartments'
-              onChange={setActiveTab}
+              onChange={handleTabChange}
               className='mb-4'
+              activeKey={activeTab}
             >
               <Tabs.TabPane tab='Apartments' key='apartments' />
               <Tabs.TabPane tab='Services' key='services' />
@@ -103,7 +109,18 @@ const HompageTemplate: FC = () => {
               transition={{ duration: 0.3 }}
               className='min-h-[600px]'
             >
-              {/* Content will be added here */}
+              {activeTab === 'apartments' && (
+                <div></div>
+              )}
+              {activeTab === 'services' && (
+                <ServicesHomepageTemp />
+              )}
+              {activeTab === 'maintenance' && (
+                <div></div>
+              )}
+              {activeTab === 'residents' && (
+                <div></div>
+              )}
             </motion.div>
           </Content>
         </Layout>
