@@ -197,7 +197,7 @@ const ResidentLogin = () => {
 
       {/* Footer */}
       <div className='mt-10 text-center text-sm text-gray-300'>
-        <p>© 2024 CondoManager. All rights reserved.</p>
+        <p>© 2025 CondoManager. All rights reserved.</p>
         <div className='mt-2 flex justify-center gap-4'>
           <a href='#' className='hover:underline'>
             Privacy Policy

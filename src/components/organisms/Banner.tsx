@@ -12,7 +12,7 @@ const Banner = () => (
           playsInline
           className='h-full w-full rounded-lg object-cover'
         >
-          <source src='/video/banner.mp4' type='video/mp4' />
+          <source src='/banner.mp4' type='video/mp4' />
           Your browser does not support the video tag.
         </video>
       </div>

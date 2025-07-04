@@ -11,19 +11,35 @@ const HeaderHomepage: React.FC = () => {
   const [userName, setUserName] = useState<string>('');
 
   useEffect(() => {
-    const storedUser =
-      localStorage.getItem('user') || sessionStorage.getItem('user');
-    console.log('Header Homepage - Stored user data:', storedUser);
-    if (storedUser) {
-      try {
-        const user = JSON.parse(storedUser);
-        console.log('Header Homepage - Parsed user data:', user);
-        setUserName(user.fullName || 'Unknown');
-        setIsLoggedIn(true);
-      } catch (error) {
-        console.error('Header Homepage - Failed to parse user info', error);
+    const checkUserLogin = () => {
+      const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user');
+      const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+      if (storedUser && token) {
+        try {
+          const user = JSON.parse(storedUser);
+          if (user && user.fullName) {
+            setUserName(user.fullName);
+            setIsLoggedIn(true);
+          } else {
+            console.warn('User data missing fullName');
+            setIsLoggedIn(false);
+            setUserName('');
+          }
+        } catch (error) {
+          console.error('Failed to parse user info:', error);
+          setIsLoggedIn(false);
+          setUserName('');
+        }
+      } else {
+        setIsLoggedIn(false);
+        setUserName('');
       }
-    }
+    };
+
+    checkUserLogin();
+    window.addEventListener('storage', checkUserLogin);
+    return () => window.removeEventListener('storage', checkUserLogin);
   }, []);
 
   const handleLogout = () => {
@@ -32,6 +48,7 @@ const HeaderHomepage: React.FC = () => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
     setIsLoggedIn(false);
+    setUserName('');
     navigate('/resident-login');
   };
 
@@ -56,14 +73,14 @@ const HeaderHomepage: React.FC = () => {
         <Navigation />
       </div>
       <div className='flex items-center gap-4'>
-        {isLoggedIn && (
-          <Dropdown overlay={userMenu} trigger={['click']}>
-            <div className='flex cursor-pointer items-center gap-2'>
-              <Avatar icon={<UserOutlined />} />
-              <span className='text-sm font-medium text-gray-700'>{userName}</span>
-            </div>
-          </Dropdown>
-        )}
+        <Dropdown overlay={userMenu} trigger={['click']}>
+          <div className='flex cursor-pointer items-center gap-2'>
+            <Avatar icon={<UserOutlined />} />
+            <span className='text-sm font-medium text-gray-700'>
+              {isLoggedIn ? userName : 'Login'}
+            </span>
+          </div>
+        </Dropdown>
       </div>
     </header>
   );
